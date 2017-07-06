@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   devise_for :mirrors, controllers: {
     passwords: 'mirrors/passwords',
-    registrations: 'mirrors/registrations'
+    registrations: 'mirrors/registrations',
+    sessions: 'mirrors/sessions'
   }
   devise_for :members, controllers: {
     passwords: 'members/passwords',
-    registrations: 'members/registrations'
+    registrations: 'members/registrations',
+    sessions: 'members/sessions'
   }
   get 'home/index'
   root 'home#index'

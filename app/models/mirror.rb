@@ -5,5 +5,6 @@ class Mirror < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :members
   validates :codename, presence: true,
+                       uniqueness: true,
                        length: { minimum: 4 }
 end

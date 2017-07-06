@@ -7,7 +7,7 @@
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name, autofocus: true %>
   </div>
-  
+
   <div class="field">
     <%= f.label :last_name %><br />
     <%= f.text_field :last_name, autofocus: true %>
@@ -34,6 +34,16 @@
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :mirror_codename %><br />
+    <%= f.text_field :mirror_codename, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :mirror_password %><br />
+    <%= f.password_field :mirror_password, autocomplete: "off" %>
   </div>
 
   <div class="actions">

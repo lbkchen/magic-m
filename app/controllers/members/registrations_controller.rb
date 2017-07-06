@@ -8,9 +8,11 @@ class Members::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    mirror = Mirror.find_by codename: sign_up_params[:mirror_codename]
+    params[:member][:mirror_id] = mirror.id
+    super
+  end
 
   # GET /resource/edit
   # def edit
@@ -41,14 +43,24 @@ class Members::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(
-      :sign_up, keys: [:username, :first_name, :last_name]
+      :sign_up, keys: [:username,
+                       :first_name,
+                       :last_name,
+                       :mirror_codename,
+                       :mirror_password,
+                       :mirror_id]
     )
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
     devise_parameter_sanitizer.permit(
-      :account_update, keys: [:username, :first_name, :last_name]
+      :account_update, keys: [:username,
+                              :first_name,
+                              :last_name,
+                              :mirror_codename,
+                              :mirror_password,
+                              :mirror_id]
     )
   end
 
