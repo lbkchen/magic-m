@@ -1,4 +1,8 @@
 class Member < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
   belongs_to :mirror
 
   enum activity: [
@@ -12,6 +16,6 @@ class Member < ApplicationRecord
     :unknown,
   ]
 
-  validates :username, prescence: true,
+  validates :username, presence: true,
                        length: { minimum: 4 }
 end
