@@ -4,18 +4,8 @@
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true %>
+    <%= f.label :codename %><br />
+    <%= f.text_field :codename, autofocus: true %>
   </div>
 
   <div class="field">
@@ -41,4 +31,4 @@
   </div>
 <% end %>
 
-<%= render "members/shared/links" %>
+<%= render "mirrors/shared/links" %>

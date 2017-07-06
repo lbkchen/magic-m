@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :mirrors
+  devise_for :mirrors, controllers: {
+    passwords: 'mirrors/passwords',
+    registrations: 'mirrors/registrations'
+  }
   devise_for :members, controllers: {
     passwords: 'members/passwords',
     registrations: 'members/registrations'
