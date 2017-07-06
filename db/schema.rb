@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170704014656) do
+ActiveRecord::Schema.define(version: 20170705212344) do
 
   create_table "members", force: :cascade do |t|
     t.string "username"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20170704014656) do
     t.datetime "updated_at", null: false
     t.decimal "lat", precision: 10, scale: 6
     t.decimal "lon", precision: 10, scale: 6
+    t.integer "activity", default: 0
     t.index ["mirror_id"], name: "index_members_on_mirror_id"
   end
 
