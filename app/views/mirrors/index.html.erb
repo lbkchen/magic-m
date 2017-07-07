@@ -1,0 +1,18 @@
+<h2>Mirror</h2>
+
+<% @mirrors.each do |mirror| %>
+  <tr>
+    <td><%= mirror.codename %></td>
+    <% if current_mirror.id == mirror.id %>
+      <td>
+        <%= link_to 'See Members', mirror_members_path(mirror), method: :get %>
+      </td>
+      <td>
+        <%= link_to 'Destroy', mirror_path(mirror),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %>
+      </td>
+    <% end %>
+  </tr>
+  <br />
+<% end %>

@@ -1,5 +1,11 @@
 class MirrorsController < ApplicationController
+  before_action :authenticate_mirror!
+
   load_and_authorize_resource
+
+  def index
+    # render json: @mirrors
+  end
 
   def create
     if @mirror.save
@@ -10,7 +16,6 @@ class MirrorsController < ApplicationController
   end
 
   def destroy
-    @mirror = Mirror.find(params[:id])
     if @mirror.destroy
       render json: @mirror
     else
@@ -20,13 +25,12 @@ class MirrorsController < ApplicationController
 
   def activities
     # Returns a summary of all activities of members
-    @mirror = Mirror.find(params[:id])
     @mirror.members.map{ |m| [m.first_name, m.activity] }.to_h  # TODO: test
   end
 
   private
 
   def current_ability
-    @current_ability ||= MirrorAbility.new(current_mirror)
+    @current_ability ||= Abilities::MirrorAbility.new(current_mirror)
   end
 end

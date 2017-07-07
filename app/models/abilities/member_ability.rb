@@ -1,4 +1,4 @@
-class MemberAbility
+class Abilities::MemberAbility
   include CanCan::Ability
 
   def initialize(member)
@@ -10,5 +10,9 @@ class MemberAbility
       :location,
       :activity,
     ], Member, id: member.id
+
+    can [
+      :index,
+    ], Member
   end
 end

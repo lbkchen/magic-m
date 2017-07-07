@@ -1,0 +1,12 @@
+<h2>Members</h2>
+<%= link_to '<- Back to mirrors', mirrors_path %><br /><br />
+<% @members.each do |member| %>
+  <tr>
+    <td><%= member.first_name %></td>
+    <td><%= member.last_name %></td>
+    <td><%= member.email %></td>
+    <td><%= link_to 'Destroy', mirror_member_path(member.mirror, member),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>

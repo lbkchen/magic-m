@@ -11,6 +11,12 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <% if mirror_signed_in? %>
+      <%= link_to 'Mirror Sign Out', destroy_mirror_session_path, method: :delete %>
+    <% end %>
+    <% if member_signed_in? %>
+      <%= link_to 'Member Sign Out', destroy_member_session_path, method: :delete %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

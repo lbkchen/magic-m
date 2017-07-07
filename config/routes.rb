@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     sessions: 'members/sessions'
   }
   get 'home/index'
-  root 'home#index'
+  root 'mirrors#index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :mirrors do
