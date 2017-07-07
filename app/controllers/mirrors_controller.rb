@@ -1,4 +1,5 @@
 class MirrorsController < ApplicationController
+  load_and_authorize_resource
 
   def create
     if @mirror.save
@@ -25,4 +26,7 @@ class MirrorsController < ApplicationController
 
   private
 
+  def current_ability
+    @current_ability ||= MirrorAbility.new(current_mirror)
+  end
 end

@@ -12,6 +12,8 @@ gem 'rails', '~> 5.1.2'
 gem 'sqlite3'
 # Authentication
 gem 'devise'
+# Restrict resources
+gem 'cancancan', '~> 1.10'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets

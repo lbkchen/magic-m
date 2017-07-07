@@ -1,5 +1,6 @@
 class MembersController < ApplicationController
-
+  load_and_authorize_resource
+  
   def create
     if @member.save
       render json: @member
@@ -40,4 +41,7 @@ class MembersController < ApplicationController
     params.require(:member).permit(:lat, :lon)
   end
 
+  def current_ability
+    @current_ability ||= MemberAbility.new(current_member)
+  end
 end
