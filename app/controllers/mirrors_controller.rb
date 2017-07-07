@@ -25,7 +25,7 @@ class MirrorsController < ApplicationController
 
   def activities
     # Returns a summary of all activities of members
-    @mirror.members.map{ |m| [m.first_name, m.activity] }.to_h  # TODO: test
+    render json: @mirror.members.map{ |m| [m.first_name, m.activity] }.to_h  # TODO: test
   end
 
   private
