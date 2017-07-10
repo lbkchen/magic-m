@@ -5,6 +5,7 @@ class Abilities::MirrorAbility
     mirror ||= Mirror.new
 
     can [
+      :show, 
       :create,
       :destroy,
       :activities,

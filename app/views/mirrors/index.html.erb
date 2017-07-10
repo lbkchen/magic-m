@@ -5,6 +5,9 @@
     <td><%= mirror.codename %></td>
     <% if current_mirror.id == mirror.id %>
       <td>
+        <%= link_to 'View', mirror_path(mirror), method: :get %>
+      </td>
+      <td>
         <%= link_to 'See Members', mirror_members_path(mirror), method: :get %>
       </td>
       <td>

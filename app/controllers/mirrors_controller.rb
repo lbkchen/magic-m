@@ -7,6 +7,10 @@ class MirrorsController < ApplicationController
     # render json: @mirrors
   end
 
+  def show
+    @activities = activities_hash
+  end
+
   def create
     if @mirror.save
       render json: @mirror
@@ -25,10 +29,14 @@ class MirrorsController < ApplicationController
 
   def activities
     # Returns a summary of all activities of members
-    render json: @mirror.members.map{ |m| [m.first_name, m.activity] }.to_h  # TODO: test
+    render json: activities_hash  # TODO: test
   end
 
   private
+
+  def activities_hash
+    @mirror.members.map{ |m| [m.first_name, m.activity] }.to_h
+  end
 
   def current_ability
     @current_ability ||= Abilities::MirrorAbility.new(current_mirror)
