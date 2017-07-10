@@ -54,4 +54,7 @@ Rails.application.configure do
 
   # Setup default URL options (devise)
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # Setup react environment
+  config.react.variant = :development
 end

@@ -8,6 +8,8 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.2'
+# React
+gem 'react-rails'
 # Restrict resources
 gem 'cancancan', '~> 1.10'
 # Use sqlite3 as the database for Active Record
