@@ -3,6 +3,10 @@ class Mirror extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      activities: this.props.activities,
+    };
+    /* Order is important and must match backend. */
     this.ACTIVITIES = [
       "home",
       "work",
@@ -27,12 +31,20 @@ class Mirror extends React.Component {
       prison:       "prison",
       mortal_peril: "mortal peril",
     };
-    this.state = {
-      activities: this.props.activities,
-    };
+    this.DEV_REFRESH_RATE = 1000;  // Refresh every second
+    this.PROD_REFRESH_RATE = 10000; // Refresh every 10 seconds
+
     console.log(this.props.mirror);
     console.log(this.props.activities);
     this.rerender = this.rerender.bind(this);
+  }
+
+  componentDidMount() {
+    this.interval = setInterval(() => this.rerender(), this.DEV_REFRESH_RATE);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   /* Returns common name for activity's programmatic name */
@@ -93,14 +105,6 @@ class Mirror extends React.Component {
     });
   }
 
-  renderUpdateButton() {
-    return (
-      <button onClick={this.rerender}>
-        Rerender
-      </button>
-    )
-  }
-
   renderMembers() {
     let activities = this.state.activities;
     let members = Object.keys(activities);
@@ -123,7 +127,6 @@ class Mirror extends React.Component {
       <div className="mirror">
         {this.renderActivities()}
         {this.renderMembers()}
-        {this.renderUpdateButton()}
       </div>
     );
   }

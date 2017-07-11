@@ -7,13 +7,14 @@
 
 }
 
+$mirror-size: 70%;
 .mirror {
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  width: 80%;
-  padding-bottom: 80%;
+  width: $mirror-size;
+  padding-bottom: $mirror-size;
   border-radius: 50%;
   border: 6px dotted $white;
 }
