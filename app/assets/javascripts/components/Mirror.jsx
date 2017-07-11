@@ -83,13 +83,10 @@ class Mirror extends React.Component {
       credentials: "include"
     })
     .then((response) => {
-      console.log(response);
       return response.json();
     })
     .then((json) => {
-      console.log(json);
       this.setState({ activities: json });
-      console.log(this.state.activities);
     })
     .catch((error) => {
       console.error(error);
