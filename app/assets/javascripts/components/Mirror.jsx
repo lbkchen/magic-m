@@ -37,6 +37,10 @@ class Mirror extends React.Component {
     return this.ACTIVITY_NAMES[activity];
   }
 
+  getActivityIndex(activity) {
+    return this.ACTIVITIES.indexOf(activity);
+  }
+
   getRotationStyle(degrees) {
     return {
       transform: `rotate(${degrees}deg)`,
@@ -44,8 +48,12 @@ class Mirror extends React.Component {
     };
   }
 
+  getRotationDegreesByIndex(index) {
+    return (index / this.ACTIVITIES.length) * 360;
+  }
+
   getRotationStyleByIndex(index) {
-    const degrees = (index / this.ACTIVITIES.length) * 360;
+    const degrees = this.getRotationDegreesByIndex(index);
     return this.getRotationStyle(degrees);
   }
 
@@ -67,15 +75,37 @@ class Mirror extends React.Component {
     );
   }
 
+  renderMembers() {
+    members = Object.keys(this.props.activities);
+    return (
+      members.map((member, i) => {
+        let activity = this.props.activities[member];
+        let index = this.getActivityIndex(activity);
+        return (
+          <ClockHand
+            degrees={this.getRotationDegreesByIndex(index)}
+            key={`clock_hand_${i}`}
+          />
+        );
+      })
+    );
+  }
+
   render() {
     return (
       <div className="mirror">
         {this.renderActivities()}
+        {this.renderMembers()}
       </div>
     );
   }
 }
 
+const PropTypes = React.PropTypes;
 Mirror.propTypes = {
-
+  mirror: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    codename: PropTypes.string.isRequired,
+  }),
+  activities: PropTypes.object.isRequired,
 };

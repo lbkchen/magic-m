@@ -23,7 +23,7 @@ class Member < ApplicationRecord
   validates :username, presence: true,
                        length: { minimum: 4 }
   validates :activity, inclusion: {:in => Member.activities}
-  validate :correct_mirror_password
+  validate :correct_mirror_password, on: :create
 
   def correct_mirror_password
     unless self.mirror.valid_password?(mirror_password)
