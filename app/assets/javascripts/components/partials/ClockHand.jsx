@@ -2,13 +2,21 @@ class ClockHand extends React.Component {
 
   constructor(props) {
     super(props);
+
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.degrees != nextProps.degrees) {
+      // Placeholder
+    }
   }
 
   getRotationStyle() {
-    return {
+    let rotateStyle = {
       transform: `rotate(${this.props.degrees}deg)`,
-      transformOrigin: "bottom",
+      transformOrigin: "bottom", 
     };
+    return rotateStyle;
   }
 
   render() {
@@ -22,5 +30,4 @@ class ClockHand extends React.Component {
 const PropTypes = React.PropTypes;
 ClockHand.propTypes = {
   degrees: PropTypes.number.isRequired,
-  // numMembers: PropTypes.number.isRequired,
 };

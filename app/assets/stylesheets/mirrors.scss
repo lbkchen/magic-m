@@ -41,4 +41,6 @@
   height: 35%;
   border-radius: 2.5px;
   background: $white;
+  transition: 3s;
+  @include transition-timing-function(cubic-bezier(.22, .35, .28, .96));
 }

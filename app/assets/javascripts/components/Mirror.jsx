@@ -27,9 +27,12 @@ class Mirror extends React.Component {
       prison:       "prison",
       mortal_peril: "mortal peril",
     };
-
+    this.state = {
+      activities: this.props.activities,
+    };
     console.log(this.props.mirror);
     console.log(this.props.activities);
+    this.rerender = this.rerender.bind(this);
   }
 
   /* Returns common name for activity's programmatic name */
@@ -75,11 +78,38 @@ class Mirror extends React.Component {
     );
   }
 
+  rerender() {
+    fetch(`/mirrors/${this.props.mirror.id}/activities`, {
+      credentials: "include"
+    })
+    .then((response) => {
+      console.log(response);
+      return response.json();
+    })
+    .then((json) => {
+      console.log(json);
+      this.setState({ activities: json });
+      console.log(this.state.activities);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+
+  renderUpdateButton() {
+    return (
+      <button onClick={this.rerender}>
+        Rerender
+      </button>
+    )
+  }
+
   renderMembers() {
-    members = Object.keys(this.props.activities);
+    let activities = this.state.activities;
+    let members = Object.keys(activities);
     return (
       members.map((member, i) => {
-        let activity = this.props.activities[member];
+        let activity = activities[member];
         let index = this.getActivityIndex(activity);
         return (
           <ClockHand
@@ -96,6 +126,7 @@ class Mirror extends React.Component {
       <div className="mirror">
         {this.renderActivities()}
         {this.renderMembers()}
+        {this.renderUpdateButton()}
       </div>
     );
   }
