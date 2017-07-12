@@ -55,8 +55,9 @@ $clock-hand-height: 35%;
   @extend .smooth-animate;
 }
 
-$clock-member-height: 10%;
-$clock-member-top: -$clock-member-height;
+$clock-member-height: 6%;
+$clock-member-top-height-ratio: 1.5;
+$clock-member-top: -$clock-member-height * $clock-member-top-height-ratio;
 $clock-member-width: 30%;
 .clock-member {
   @extend .flex-centered;
@@ -67,7 +68,7 @@ $clock-member-width: 30%;
   height: $clock-member-height;
   width: $clock-member-width;
   // background-color: red;
-  transform-origin: center 600%;
+  transform-origin: center (($clock-member-top-height-ratio * 100%)+ 50% / $clock-member-height * 100%);
   @extend .smooth-animate;
 
   font-size: 24px;
