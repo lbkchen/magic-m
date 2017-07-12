@@ -34,30 +34,39 @@ $mirror-size: 70%;
   text-align: center;
 }
 
-// Clock hand
-.clock-hand {
-  position: absolute;
-  margin-left: -2.5px;
-  left: 50%;
-  top: 15%;
-  width: 5px;
-  height: 35%;
-  border-radius: 2.5px;
-  background: $white;
-  transform-origin: bottom;
+// Clock hand and members
+.smooth-animate {
   transition: 3s;
   @include transition-timing-function(cubic-bezier(.22, .35, .28, .96));
 }
 
+$clock-hand-width: 5px;
+$clock-hand-height: 35%;
+.clock-hand {
+  position: absolute;
+  margin-left: -($clock-hand-width / 2);
+  left: 50%;
+  top: 50% - $clock-hand-height;
+  width: $clock-hand-width;
+  height: $clock-hand-height;
+  border-radius: $clock-hand-width / 2;
+  background: $white;
+  transform-origin: bottom;
+  @extend .smooth-animate;
+}
+
+$clock-member-height: 10%;
+$clock-member-top: -$clock-member-height;
+$clock-member-width: 30%;
 .clock-member {
   position: absolute;
-  margin-left: -100px;
+  margin-left: -($clock-member-width / 2);
   left: 50%;
-  top: -10%;
-  height: 10%;
-  width: 200px;
+  top: $clock-member-top;
+  height: $clock-member-height;
+  width: $clock-member-width;
   background-color: red;
   transform-origin: center 600%;
-  transition: 3s;
-  @include transition-timing-function(cubic-bezier(.22, .35, .28, .96));
+  @extend .smooth-animate;
+
 }

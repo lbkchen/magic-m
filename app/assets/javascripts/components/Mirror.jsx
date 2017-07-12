@@ -56,6 +56,29 @@ class Mirror extends React.Component {
     return this.ACTIVITIES.indexOf(activity);
   }
 
+  /**
+   * Returns an object mapping all activities to an array of members for each
+   * activity in order of last updated. Looks like this:
+   * {
+   *   school: ["Ken", "Kenny"],
+   *   prison: ["Bro", "Graham"],
+   *   mortal_peril: ["Jamie"],
+   * }
+   */
+  getActivitySummary() {
+    const activities = this.state.activities;
+    let summary = {};
+    Object.keys(activities).forEach((member) => {
+      let activity = activities[member];
+      if (summary.hasOwnProperty(activity)) {
+        summary[activity].push(member);
+      } else {
+        summary[activity] = [member];
+      }
+    });
+    return summary;
+  }
+
   getRotationStyle(degrees) {
     return {
       transform: `rotate(${degrees}deg)`,
@@ -106,15 +129,20 @@ class Mirror extends React.Component {
   }
 
   renderMembers() {
-    let activities = this.state.activities;
-    let members = Object.keys(activities);
+    const activities = this.state.activities;
+    const members = Object.keys(activities);
+    const summary = this.getActivitySummary();
+    console.log(summary);
     return (
       members.map((member, i) => {
         let activity = activities[member];
         let index = this.getActivityIndex(activity);
+        let positionIndex = summary[activity].indexOf(member);
+        console.log(member, positionIndex);
         return (
           <ClockHand
             degrees={this.getRotationDegreesByIndex(index)}
+            positionIndex={positionIndex}
             key={`clock_hand_${i}`}
           />
         );
