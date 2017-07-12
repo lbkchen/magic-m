@@ -31,7 +31,7 @@ class Mirror extends React.Component {
       prison:       "prison",
       mortal_peril: "mortal peril",
     };
-    this.DEV_REFRESH_RATE = 1000;  // Refresh every second
+    this.DEV_REFRESH_RATE = 10000;  // Refresh every second
     this.PROD_REFRESH_RATE = 10000; // Refresh every 10 seconds
 
     console.log(this.props.mirror);
@@ -144,6 +144,7 @@ class Mirror extends React.Component {
             degrees={this.getRotationDegreesByIndex(index)}
             positionIndex={positionIndex}
             key={`clock_hand_${i}`}
+            name={member}
           />
         );
       })

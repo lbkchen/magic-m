@@ -9,9 +9,7 @@
 
 $mirror-size: 70%;
 .mirror {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend .flex-centered;
   position: absolute;
   width: $mirror-size;
   padding-bottom: $mirror-size;
@@ -30,8 +28,10 @@ $mirror-size: 70%;
 
 .rotable-text {
   margin: 0px auto;
-  font-size: 36px;
+  font-size: 30px;
   text-align: center;
+  font-family: 'Cinzel';
+  font-weight: $regular;
 }
 
 // Clock hand and members
@@ -59,14 +59,30 @@ $clock-member-height: 10%;
 $clock-member-top: -$clock-member-height;
 $clock-member-width: 30%;
 .clock-member {
+  @extend .flex-centered;
   position: absolute;
   margin-left: -($clock-member-width / 2);
   left: 50%;
   top: $clock-member-top;
   height: $clock-member-height;
   width: $clock-member-width;
-  background-color: red;
+  // background-color: red;
   transform-origin: center 600%;
   @extend .smooth-animate;
 
+  font-size: 24px;
+  font-weight: $extra-bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  &.fade-0 {
+    // Placeholder
+    color: $white;
+  }
+  &.fade-1 {
+    color: $white-80;
+  }
+  &.fade-2 {
+    color: $white-60;
+  }
 }
