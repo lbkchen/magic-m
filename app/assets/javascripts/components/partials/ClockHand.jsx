@@ -13,15 +13,18 @@ class ClockHand extends React.Component {
 
   getRotationStyle() {
     let rotateStyle = {
-      transform: `rotate(${this.props.degrees}deg)`,
-      transformOrigin: "bottom", 
+      transform: `rotate(${this.props.degrees}deg) translateZ(0)`,
     };
     return rotateStyle;
   }
 
   render() {
     return (
+      <div>
       <div className="clock-hand" style={this.getRotationStyle()}>
+      </div>
+      <div className="clock-member" style={this.getRotationStyle()}>
+      </div>
       </div>
     );
   }

@@ -37,11 +37,27 @@ $mirror-size: 70%;
 // Clock hand
 .clock-hand {
   position: absolute;
+  margin-left: -2.5px;
+  left: 50%;
   top: 15%;
   width: 5px;
   height: 35%;
   border-radius: 2.5px;
   background: $white;
+  transform-origin: bottom;
+  transition: 3s;
+  @include transition-timing-function(cubic-bezier(.22, .35, .28, .96));
+}
+
+.clock-member {
+  position: absolute;
+  margin-left: -100px;
+  left: 50%;
+  top: -10%;
+  height: 10%;
+  width: 200px;
+  background-color: red;
+  transform-origin: center 600%;
   transition: 3s;
   @include transition-timing-function(cubic-bezier(.22, .35, .28, .96));
 }
