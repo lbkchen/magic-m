@@ -14,9 +14,9 @@ class Mirror extends React.Component {
       "groceries",
       "shopping",
       "partying",
-      "adventuring",
+      "adventure",
       "unknown",
-      "prison",
+      "eating",
       "mortal_peril",
     ];
     this.ACTIVITY_NAMES = {
@@ -26,12 +26,12 @@ class Mirror extends React.Component {
       groceries:    "groceries",
       shopping:     "shopping",
       partying:     "partying",
-      adventuring:  "adventuring",
+      adventure:    "adventure",
       unknown:      "unknown",
-      prison:       "prison",
+      eating:       "eating",
       mortal_peril: "mortal peril",
     };
-    this.DEV_REFRESH_RATE = 10000;  // Refresh every second
+    this.DEV_REFRESH_RATE = 2000;  // Refresh every 2 seconds
     this.PROD_REFRESH_RATE = 10000; // Refresh every 10 seconds
 
     console.log(this.props.mirror);
@@ -138,13 +138,15 @@ class Mirror extends React.Component {
         let activity = activities[member];
         let index = this.getActivityIndex(activity);
         let positionIndex = summary[activity].indexOf(member);
+        let numMembers = summary[activity].length;
         console.log(member, positionIndex);
         return (
           <ClockHand
             degrees={this.getRotationDegreesByIndex(index)}
             positionIndex={positionIndex}
-            key={`clock_hand_${i}`}
+            numMembers={numMembers}
             name={member}
+            key={`clock_hand_${i}`}
           />
         );
       })

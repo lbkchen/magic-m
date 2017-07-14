@@ -68,7 +68,7 @@ $clock-member-width: 30%;
   height: $clock-member-height;
   width: $clock-member-width;
   // background-color: red;
-  transform-origin: center (($clock-member-top-height-ratio * 100%)+ 50% / $clock-member-height * 100%);
+  transform-origin: center (($clock-member-top-height-ratio * 100%) + 50% / $clock-member-height * 100%);
   @extend .smooth-animate;
 
   font-size: 24px;
@@ -86,4 +86,26 @@ $clock-member-width: 30%;
   &.fade-2 {
     color: $white-60;
   }
+}
+
+$number-label-size: 8%;
+$number-label-y: 30%;
+.number-label {
+  @extend .flex-centered;
+  position: absolute;
+  margin-left: -($number-label-size / 2);
+  left: 50%;
+  top: 50% - ($clock-hand-height / 2) - ($number-label-size / 2);
+  height: $number-label-size;
+  width: $number-label-size;
+  background: $black;
+  border: ($clock-hand-width / 2) solid $white;
+  box-sizing: border-box;
+  border-radius: 50%;
+  transform-origin: center (50% + ($clock-hand-height / $number-label-size) * 50%);
+  @extend .smooth-animate;
+
+  font-size: 24px;
+  font-weight: $bold;
+
 }

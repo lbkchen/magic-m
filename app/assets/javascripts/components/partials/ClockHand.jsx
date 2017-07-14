@@ -25,6 +25,9 @@ class ClockHand extends React.Component {
     return (
       <div>
         <div className="clock-hand" style={this.getRotationStyle()} />
+        <div className="number-label" style={this.getRotationStyle()}>
+          {this.props.numMembers}
+        </div>
         <div
           className={`clock-member fade-${this.props.positionIndex}`}
           style={this.getRotationStyle(this.props.positionIndex)}
@@ -41,4 +44,5 @@ ClockHand.propTypes = {
   degrees: PropTypes.number.isRequired,
   positionIndex: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
+  numMembers: PropTypes.number.isRequired,
 };

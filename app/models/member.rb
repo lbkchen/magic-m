@@ -14,9 +14,9 @@ class Member < ApplicationRecord
     :groceries,
     :shopping,
     :partying,
-    :adventuring,
+    :adventure,
     :unknown,
-    :prison,
+    :eating,
     :mortal_peril,
   ]
 
