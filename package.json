@@ -1,5 +1,7 @@
 {
   "name": "magic-m",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "underscore": "^1.8.3"
+  }
 }
