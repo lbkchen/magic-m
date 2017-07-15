@@ -24,6 +24,8 @@ $mirror-size: 70%;
   width: 96%;
   height: 96%;
   pointer-events: none;
+  transition: 1s;
+  @include transition-timing-function(cubic-bezier(.22, .35, .28, .96))
 }
 
 .rotable-text {

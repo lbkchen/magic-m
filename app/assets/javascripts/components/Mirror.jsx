@@ -40,7 +40,7 @@ class Mirror extends React.Component {
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => this.rerender(), this.DEV_REFRESH_RATE);
+    this.interval = setInterval(() => this.rerender() || this.shuffleActivities(), this.DEV_REFRESH_RATE);
   }
 
   componentWillUnmount() {
@@ -93,6 +93,11 @@ class Mirror extends React.Component {
   getRotationStyleByIndex(index) {
     const degrees = this.getRotationDegreesByIndex(index);
     return this.getRotationStyle(degrees);
+  }
+
+  shuffleActivities() {
+    this.ACTIVITIES = _.shuffle(this.ACTIVITIES);
+    this.setState(this.state);
   }
 
   renderActivities() {
