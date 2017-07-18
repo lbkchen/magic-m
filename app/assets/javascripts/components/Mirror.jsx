@@ -40,7 +40,7 @@ class Mirror extends React.Component {
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => this.rerender() || this.shuffleActivities(), this.DEV_REFRESH_RATE);
+    this.interval = setInterval(() => this.rerender() && this.shuffleActivities(), this.DEV_REFRESH_RATE);
   }
 
   componentWillUnmount() {
