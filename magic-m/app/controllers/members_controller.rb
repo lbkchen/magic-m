@@ -44,7 +44,7 @@ class MembersController < ApplicationController
   end
 
   def members_location_parameters
-    params.require(:member).permit(:lat, :lon)
+    params.require(:member).permit(:activity)
   end
 
   def current_ability

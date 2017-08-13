@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     member do
       get 'activities'
     end
-    resources :members
+    resources :members do
+      put 'location'
+    end
   end
 end
