@@ -24,3 +24,6 @@
 
 # Additional
 log
+node_modules
+db
+tmp

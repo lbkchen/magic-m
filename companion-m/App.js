@@ -1,15 +1,19 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Scene, Router } from 'react-native-router-flux';
+// import Icon from 'react-native-vector-icons/FontAwesome';
+
+import LoginScreen from 'components/scenes/LoginScreen';
 
 export default class App extends React.Component {
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Companion M</Text>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+      <Router>
+        <Scene key="root">
+          <Scene key="login" component={LoginScreen} title="Login" initial />
+        </Scene>
+      </Router>
     );
   }
 }
