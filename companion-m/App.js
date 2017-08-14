@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Scene, Router } from 'react-native-router-flux';
 // import Icon from 'react-native-vector-icons/FontAwesome';
 
-import LoginScreen from 'components/scenes/LoginScreen';
+import LoginScreen from './components/scenes/LoginScreen';
 
 export default class App extends React.Component {
 
@@ -11,7 +11,7 @@ export default class App extends React.Component {
     return (
       <Router>
         <Scene key="root">
-          <Scene key="login" component={LoginScreen} title="Login" initial />
+          <Scene key="login" component={LoginScreen} title="Login" />
         </Scene>
       </Router>
     );

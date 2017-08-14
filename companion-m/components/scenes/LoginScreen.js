@@ -10,16 +10,20 @@ export default class LoginScreen extends React.Component {
       password: null,
     };
   }
+
   render() {
+
     return (
       <View>
         <Text>Username</Text>
         <TextInput
+          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
           onChangeText={(text) => this.setState({ username: text })}
           value={this.state.username}
         />
-      <Text>Password</Text>
+        <Text>Password</Text>
         <TextInput
+          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
           onChangeText={(text) => this.setState({ password: text })}
           value={this.state.password}
           secureTextEntry
