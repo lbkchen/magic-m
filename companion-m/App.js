@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Scene, Router } from 'react-native-router-flux';
 // import Icon from 'react-native-vector-icons/FontAwesome';
 
-import LoginScreen from './components/scenes/LoginScreen';
+import LoginScreen from './src/scenes/LoginScreen';
 
 export default class App extends React.Component {
 

@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
-export default class MButton extends React.Component {
+export default class Button extends React.Component {
 
   render() {
     const textStyle = styles.textStyle;
@@ -20,7 +20,7 @@ export default class MButton extends React.Component {
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
   textStyle: {
     alignSelf: 'center',
     color: '#ffffff',
@@ -30,11 +30,9 @@ const styles = {
   buttonStyle: {
     flex: 1,
     alignSelf: 'stretch',
-    marginLeft: 5,
-    marginRight: 5,
-    marginTop: 5,
-    marginBottom: 5,
+    justifyContent: 'center',
+    padding: 30,
     backgroundColor: '#439ad8',
     borderRadius: 5,
   },
-};
+});

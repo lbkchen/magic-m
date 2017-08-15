@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 
+import Button from '../common/Button'
+
 export default class LoginScreen extends React.Component {
 
   constructor(props) {
@@ -28,6 +30,7 @@ export default class LoginScreen extends React.Component {
           value={this.state.password}
           secureTextEntry
         />
+        <Button>HELLO</Button>
       </View>
     );
   }
