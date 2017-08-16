@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 
-import Button from '../common/Button'
+import Button from '../common/Button';
+import Input from '../common/Input';
 
 export default class LoginScreen extends React.Component {
 
@@ -18,18 +19,9 @@ export default class LoginScreen extends React.Component {
     return (
       <View>
         <Text>Username</Text>
-        <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(text) => this.setState({ username: text })}
-          value={this.state.username}
-        />
+        <Input />
         <Text>Password</Text>
-        <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(text) => this.setState({ password: text })}
-          value={this.state.password}
-          secureTextEntry
-        />
+        <Input secureTextEntry />
         <Button>HELLO</Button>
       </View>
     );
