@@ -7,12 +7,23 @@ export default class Input extends React.Component {
     super(props);
     this.state = {
       text: '',
+      focus: false,
     }
     this.updateText = this.updateText.bind(this);
+    this.setFocus = this.setFocus.bind(this);
+    this.unsetFocus = this.unsetFocus.bind(this);
   }
 
   updateText(text) {
     this.setState({ text: text });
+  }
+
+  setFocus() {
+    this.setState({ focus: true });
+  }
+
+  unsetFocus() {
+    this.setState({ focus: false });
   }
 
   renderLabel() {
@@ -26,16 +37,20 @@ export default class Input extends React.Component {
   }
 
   render() {
-    const inputStyle = styles.inputStyle;
-
+    let inputStyle = [styles.inputStyle];
+    if (this.state.focus) {
+      inputStyle.push(styles.focusedInputStyle);
+    }
     return (
       <View style={[this.props.style]}>
         {this.renderLabel()}
         <TextInput
-          style={[inputStyle]}
+          style={inputStyle}
           onChangeText={this.updateText}
           value={this.state.text}
           secureTextEntry={this.props.secureTextEntry || false}
+          onFocus={this.setFocus}
+          onEndEditing={this.unsetFocus}
         />
       </View>
     );
@@ -51,10 +66,14 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.1)",
     fontSize: 16,
   },
+  focusedInputStyle: {
+    borderWidth: 1,
+    borderColor: 'rgba(64, 115, 196, 0.6)',
+  },
   textStyle: {
     marginBottom: 10,
     fontSize: 14,
     fontWeight: "700",
     letterSpacing: 1,
-  }
+  },
 });
