@@ -12,7 +12,7 @@ export default class Button extends React.Component {
         style={[buttonStyle, this.props.style]}
         onPress={this.props.onPress}
       >
-        <Text style={[textStyle, this.props.style]}>
+        <Text style={[textStyle]}>
           {this.props.children}
         </Text>
       </TouchableOpacity>
