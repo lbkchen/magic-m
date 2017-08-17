@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import MapView from 'react-native-maps';
 
 import Button from '../common/Button';
 import Input from '../common/Input';
@@ -28,6 +29,21 @@ export default class MainScreen extends React.Component {
     });
   }
 
+  renderMap() {
+    return (
+      <MapView
+        style={styles.mapContainer}
+        provider="google"
+        initialRegion={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+      />
+    );
+  }
+
   renderActivityLabel() {
     return (
       <View>
@@ -38,17 +54,29 @@ export default class MainScreen extends React.Component {
 
   render() {
     return (
-      <View>
-        {this.renderActivityLabel()}
-        <Button />
-        <Button />
-        <Button />
-        <Button />
+      <View style={styles.fullContainer}>
+        {this.renderMap()}
+        <View style={styles.contentContainer}>
+          {this.renderActivityLabel()}
+          <Button />
+          <Button />
+          <Button />
+          <Button />
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-
+  fullContainer: {
+    flex: 1,
+    flexDirection: 'column',
+  },
+  mapContainer: {
+    flex: 1,
+  },
+  contentContainer: {
+    flex: 2,
+  },
 });
