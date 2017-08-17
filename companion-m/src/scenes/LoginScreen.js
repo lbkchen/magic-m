@@ -48,8 +48,14 @@ export default class LoginScreen extends React.Component {
         },
       }),
     }).then((response) => {
-      return response.json();
+      console.log(response);
+      if (response.ok === true) {
+        return response.json();
+      } else {
+        console.error(response);
+      }
     }).then((json) => {
+      console.log(json);
       Actions.main({ id: json.id });
     }).catch((error) => {
       console.error(error);
