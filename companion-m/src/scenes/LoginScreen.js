@@ -15,16 +15,17 @@ export default class LoginScreen extends React.Component {
     };
 
     this.credentials = {
-      username: '',
+      email: '',
       password: '',
     }
 
-    this.setUsername = this.setUsername.bind(this);
+    this.setEmail = this.setEmail.bind(this);
     this.setPassword = this.setPassword.bind(this);
+    this.loginUser = this.loginUser.bind(this);
   }
 
-  setUsername(text) {
-    this.credentials.username = text;
+  setEmail(text) {
+    this.credentials.email = text;
   }
 
   setPassword(text) {
@@ -32,7 +33,7 @@ export default class LoginScreen extends React.Component {
   }
 
   loginUser() {
-    const authRoute = '';
+    const authRoute = 'http://192.168.0.139:3000/members/sign_in';
     fetch(authRoute, {
       method: 'POST',
       headers: {
@@ -40,15 +41,17 @@ export default class LoginScreen extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        username: this.credentials.username,
-        password: this.credentials.password,
+        member: {
+          email: this.credentials.email,
+          password: this.credentials.password,
+        },
       }),
     }).then((response) => {
       return response.json();
     }).then((json) => {
       console.log(json);
     }).catch((error) => {
-      console.error(error); 
+      console.error(error);
     });
   }
 
@@ -56,9 +59,9 @@ export default class LoginScreen extends React.Component {
     return (
       <View style={[marginTop.xxl]}>
         <Input
-          label="USERNAME"
+          label="EMAIL"
           style={[marginTop.lg, marginLeftRight.xxl]}
-          onChangeText={this.setUsername}
+          onChangeText={this.setEmail}
         />
         <Input
           label="PASSWORD"
@@ -66,7 +69,10 @@ export default class LoginScreen extends React.Component {
           onChangeText={this.setPassword}
           secureTextEntry
         />
-        <Button style={[marginTop.xxxl, marginLeftRight.xxl]}>
+        <Button
+          style={[marginTop.xxxl, marginLeftRight.xxl]}
+          onPress={this.loginUser}
+        >
           HELLO
         </Button>
       </View>

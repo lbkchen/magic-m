@@ -57,4 +57,7 @@ Rails.application.configure do
 
   # Setup react environment
   config.react.variant = :development
+
+  # Whitelist IP for local front-end testing
+  config.web_console.whitelisted_ips = '192.168.0.115'
 end

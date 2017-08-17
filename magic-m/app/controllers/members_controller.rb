@@ -2,6 +2,8 @@ class MembersController < ApplicationController
   before_action :authenticate_member!, except: [:index], if: :mirror_viewable?
   before_action :redirect_back, only: [:index], unless: :mirror_viewable?
 
+  skip_before_action :verify_authenticity_token
+
   load_and_authorize_resource
 
   def index
