@@ -16,6 +16,7 @@ export default class Input extends React.Component {
 
   updateText(text) {
     this.setState({ text: text });
+    this.props.onChangeText && this.props.onChangeText(text); 
   }
 
   setFocus() {
