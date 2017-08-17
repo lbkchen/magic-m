@@ -17,8 +17,11 @@ Rails.application.routes.draw do
     member do
       get 'activities'
     end
-    resources :members do
-      put 'location'
+    resources :members, shallow: true do
+      member do
+        put 'location'
+        get 'activity'
+      end
     end
   end
 end

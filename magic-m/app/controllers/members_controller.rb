@@ -11,6 +11,10 @@ class MembersController < ApplicationController
     @members = Member.where mirror_id: params[:mirror_id]
   end
 
+  def show
+    render json: @member
+  end
+  
   def create
     if @member.save
       render json: @member

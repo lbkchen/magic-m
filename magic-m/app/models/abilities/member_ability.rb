@@ -6,6 +6,7 @@ class Abilities::MemberAbility
 
     can [
       :create,
+      :show,
       :destroy,
       :location,
       :activity,

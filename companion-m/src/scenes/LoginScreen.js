@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 import Button from '../common/Button';
 import Input from '../common/Input';
@@ -49,7 +50,7 @@ export default class LoginScreen extends React.Component {
     }).then((response) => {
       return response.json();
     }).then((json) => {
-      console.log(json);
+      Actions.main({ id: json.id });
     }).catch((error) => {
       console.error(error);
     });
