@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
+import colors from '../styles/colors';
+
 export default class Button extends React.Component {
 
   render() {
@@ -32,7 +34,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center',
     padding: 30,
-    backgroundColor: '#439ad8',
+    backgroundColor: colors.blue,
     borderRadius: 5,
   },
 });
