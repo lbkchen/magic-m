@@ -1,12 +1,14 @@
 import React from 'react';
 import { View, StyleSheet, Text, TextInput } from 'react-native';
 
+import colors from '../styles/colors';
+
 export default class Input extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      text: '',
+      text: this.props.text || '',
       focus: false,
     }
     this.updateText = this.updateText.bind(this);
@@ -16,7 +18,7 @@ export default class Input extends React.Component {
 
   updateText(text) {
     this.setState({ text: text });
-    this.props.onChangeText && this.props.onChangeText(text); 
+    this.props.onChangeText && this.props.onChangeText(text);
   }
 
   setFocus() {
@@ -66,6 +68,7 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     backgroundColor: "rgba(0, 0, 0, 0.1)",
     fontSize: 16,
+    color: colors.charcoal,
   },
   focusedInputStyle: {
     borderWidth: 1,
@@ -76,5 +79,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "700",
     letterSpacing: 1,
+    color: colors.charcoal,
   },
 });

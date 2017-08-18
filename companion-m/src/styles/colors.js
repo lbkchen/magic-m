@@ -1,8 +1,10 @@
 colors = {
-  charcoal      : '#2c3037',
-  blue          : '#3474db',
-  dark_blue     : '#2555a3',
-  red           : '#d11d38'
+  charcoal          : '#2c3037',
+  light_charcoal    : '#4c5460',
+  silver            : '#8492a6',
+  blue              : '#3474db',
+  dark_blue         : '#2555a3',
+  red               : '#d11d38',
 }
 
 export default colors;

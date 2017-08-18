@@ -16,8 +16,8 @@ export default class LoginScreen extends React.Component {
     };
 
     this.credentials = {
-      email: '',
-      password: '',
+      email: 'lbkchen@gmail.com',
+      password: 'password',
     }
 
     this.setEmail = this.setEmail.bind(this);
@@ -69,15 +69,17 @@ export default class LoginScreen extends React.Component {
           label="EMAIL"
           style={[marginTop.lg, marginLeftRight.xxl]}
           onChangeText={this.setEmail}
+          text={this.credentials.email}
         />
         <Input
           label="PASSWORD"
           style={[marginTop.lg, marginLeftRight.xxl]}
           onChangeText={this.setPassword}
+          text={this.credentials.password}
           secureTextEntry
         />
         <Button
-          style={[marginTop.xxxl, marginLeftRight.xxl]}
+          style={[marginTop.xxxl, marginLeftRight.xxl, styles.button]}
           onPress={this.loginUser}
           text="LOGIN"
         />
@@ -87,5 +89,8 @@ export default class LoginScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-
+  button: {
+    paddingTop: 30,
+    paddingBottom: 30,
+  },
 });

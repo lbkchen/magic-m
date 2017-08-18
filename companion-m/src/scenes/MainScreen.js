@@ -6,6 +6,7 @@ import MapView from 'react-native-maps';
 import Button from '../common/Button';
 import Input from '../common/Input';
 import { marginTop } from '../styles/layout';
+import colors from '../styles/colors';
 
 export default class MainScreen extends React.Component {
 
@@ -13,6 +14,7 @@ export default class MainScreen extends React.Component {
     super(props);
 
     this.state = {
+      activity: 'activity',
       region: this.getInitialRegion(),
       lat: 37.78825,
       lon: -122.4324,
@@ -41,9 +43,6 @@ export default class MainScreen extends React.Component {
 
   getCurrentLocation(callback) {
     navigator.geolocation.getCurrentPosition((position) => {
-      console.log(position);
-      console.log(position.coords.latitude);
-      console.log(position.coords.longitude);
 
       this.setState({
         region: {
@@ -73,7 +72,6 @@ export default class MainScreen extends React.Component {
   }
 
   renderMap() {
-    console.log(this.state);
     return (
       <MapView
         style={styles.mapContainer}
@@ -95,8 +93,17 @@ export default class MainScreen extends React.Component {
 
   renderActivityLabel() {
     return (
-      <View>
-        <Text>{this.state.activity}</Text>
+      <View style={styles.activityContainer}>
+        <View style={styles.descriptionContainer}>
+          <Text style={styles.description}>
+            Your current activity is
+          </Text>
+        </View>
+        <View style={styles.activityNameContainer}>
+          <Text style={styles.activityName}>
+            {this.state.activity.toUpperCase()}
+          </Text>
+        </View>
       </View>
     );
   }
@@ -108,7 +115,23 @@ export default class MainScreen extends React.Component {
         <View style={styles.contentContainer}>
           {this.renderActivityLabel()}
           <View style={styles.buttonContainer}>
-            <Button height={30} width={120} text="BUTT"/>
+            <View style={styles.buttonColumnContainer}>
+              <Button style={styles.button} text="BUTT"/>
+              <Button style={styles.button} text="BUTT"/>
+              <Button style={styles.button} text="BUTT"/>
+              <Button style={styles.button} text="BUTT"/>
+              <Button style={styles.button} text="BUTT"/>
+            </View>
+            <View style={styles.buttonColumnContainer}>
+              <Button style={styles.button} text="BUTT"/>
+              <Button style={styles.button} text="BUTT"/>
+              <Button style={styles.button} text="BUTT"/>
+              <Button style={styles.button} text="BUTT"/>
+              <Button style={styles.button} text="BUTT"/>
+            </View>
+          </View>
+          <View style={styles.bigButtonContainer}>
+            <Button style={styles.bigButton} text="BUTT"/>
           </View>
         </View>
       </View>
@@ -121,16 +144,63 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
   },
+
+  // MAP SECTION
   mapContainer: {
     flex: 1,
   },
+
+  // EVERYTHING ELSE
   contentContainer: {
     flex: 2,
   },
-  buttonContainer: {
+
+  // ACTIVITY SECTION
+  activityContainer: {
     flex: 1,
+  },
+  descriptionContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 5,
+  },
+  description: {
+    fontSize: 12,
+    color: colors.light_charcoal,
+  },
+  activityNameContainer: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  activityName: {
+    fontSize: 30,
+    fontWeight: '800',
+    letterSpacing: 2,
+    color: colors.charcoal,
+  },
+
+  // BUTTON SECTION
+  buttonContainer: {
+    flex: 4,
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    margin: 30,
+  },
+  buttonColumnContainer: {
+    flex: 1,
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  button: {
+    margin: 5
+  },
+
+  // BIG BUTTON SECTION
+  bigButtonContainer: {
+    flex: 1,
+  },
+  bigButton: {
+    margin: 15,
+    backgroundColor: colors.red,
   },
 });

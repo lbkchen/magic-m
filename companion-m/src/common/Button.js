@@ -47,13 +47,15 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 16,
     fontWeight: '600',
-
   },
   buttonStyle: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 30,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
     backgroundColor: colors.blue,
     borderRadius: 5,
   },
