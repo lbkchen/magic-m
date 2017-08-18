@@ -18,20 +18,31 @@ export default class MainScreen extends React.Component {
       region: this.getInitialRegion(),
       lat: 37.78825,
       lon: -122.4324,
+      locationTracking: true,
     };
+
+    this.interval = null; // Set after mounted
 
     this.getCurrentLocation = this.getCurrentLocation.bind(this);
     this.onRegionChange = this.onRegionChange.bind(this);
-    this.interval = null; // Set after mounted
+    this.toggleLocationTracking = this.toggleLocationTracking.bind(this);
   }
 
   componentDidMount() {
     this.getCurrentActivity();
     this.getCurrentLocation();
-    this.interval = setInterval(this.getCurrentLocation, 2000);
+    this.startLocationTracking();
   }
 
   componentWillUnmount() {
+    this.stopLocationTracking();
+  }
+
+  startLocationTracking() {
+    this.interval = setInterval(this.getCurrentLocation, 2000);
+  }
+
+  stopLocationTracking() {
     clearInterval(this.interval);
   }
 
@@ -78,6 +89,15 @@ export default class MainScreen extends React.Component {
     this.setState({ region: region });
   }
 
+  toggleLocationTracking() {
+    if (this.state.locationTracking) {
+      this.stopLocationTracking();
+    } else {
+      this.startLocationTracking();
+    }
+    this.setState({ locationTracking: !this.state.locationTracking });
+  }
+
   renderMap() {
     return (
       <MapView
@@ -116,6 +136,8 @@ export default class MainScreen extends React.Component {
   }
 
   render() {
+    const bigButtonStyle = this.state.locationTracking ? styles.bigButtonRed : styles.bigButtonGreen;
+    const bigButtonText = this.state.locationTracking ? "Turn Off Tracking": "Turn On Tracking";
     return (
       <View style={styles.fullContainer}>
         {this.renderMap()}
@@ -138,7 +160,11 @@ export default class MainScreen extends React.Component {
             </View>
           </View>
           <View style={styles.bigButtonContainer}>
-            <Button style={styles.bigButton} text="BUTT"/>
+            <Button
+              style={bigButtonStyle}
+              text={bigButtonText}
+              onPress={this.toggleLocationTracking}
+            />
           </View>
         </View>
       </View>
@@ -206,8 +232,12 @@ const styles = StyleSheet.create({
   bigButtonContainer: {
     flex: 1,
   },
-  bigButton: {
+  bigButtonRed: {
     margin: 15,
     backgroundColor: colors.red,
+  },
+  bigButtonGreen: {
+    margin: 15,
+    backgroundColor: colors.green,
   },
 });
