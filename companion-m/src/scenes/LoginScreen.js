@@ -79,9 +79,8 @@ export default class LoginScreen extends React.Component {
         <Button
           style={[marginTop.xxxl, marginLeftRight.xxl]}
           onPress={this.loginUser}
-        >
-          HELLO
-        </Button>
+          text="LOGIN"
+        />
       </View>
     );
   }

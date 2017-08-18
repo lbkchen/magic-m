@@ -14,6 +14,8 @@ export default class MainScreen extends React.Component {
 
     this.state = {
       region: this.getInitialRegion(),
+      lat: 37.78825,
+      lon: -122.4324,
     };
 
     this.onRegionChange = this.onRegionChange.bind(this);
@@ -31,7 +33,7 @@ export default class MainScreen extends React.Component {
     }).then((json) => {
       console.log(json);
       this.setState({ activity: json.activity });
-      callback && callback();
+      callback && callback(json);
     }).catch((error) => {
       console.error(error);
     });
@@ -49,9 +51,11 @@ export default class MainScreen extends React.Component {
           longitude: position.coords.longitude,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
-        }
+        },
+        lat: position.coords.latitude,
+        lon: position.coords.longitude,
       });
-      callback && callback();
+      callback && callback(position);
     });
   }
 
@@ -76,7 +80,16 @@ export default class MainScreen extends React.Component {
         provider="google"
         region={this.state.region}
         onRegionChange={this.onRegionChange}
-      />
+      >
+        <MapView.Marker
+          coordinate={{
+            latitude: this.state.lat,
+            longitude: this.state.lon,
+          }}
+          title="You're here!"
+          description="You are here."
+        />
+      </MapView>
     );
   }
 
@@ -94,10 +107,9 @@ export default class MainScreen extends React.Component {
         {this.renderMap()}
         <View style={styles.contentContainer}>
           {this.renderActivityLabel()}
-          <Button />
-          <Button />
-          <Button />
-          <Button />
+          <View style={styles.buttonContainer}>
+            <Button height={30} width={120} text="BUTT"/>
+          </View>
         </View>
       </View>
     );
@@ -114,5 +126,11 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flex: 2,
+  },
+  buttonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    margin: 30,
   },
 });
