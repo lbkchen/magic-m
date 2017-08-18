@@ -20,12 +20,19 @@ export default class MainScreen extends React.Component {
       lon: -122.4324,
     };
 
+    this.getCurrentLocation = this.getCurrentLocation.bind(this);
     this.onRegionChange = this.onRegionChange.bind(this);
+    this.interval = null; // Set after mounted
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.getCurrentActivity();
     this.getCurrentLocation();
+    this.interval = setInterval(this.getCurrentLocation, 2000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   getCurrentActivity(callback) {
