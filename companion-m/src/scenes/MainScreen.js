@@ -51,7 +51,6 @@ export default class MainScreen extends React.Component {
     fetch(memberRoute).then((response) => {
       return response.json();
     }).then((json) => {
-      console.log(json);
       this.setState({ activity: json.activity });
       callback && callback(json);
     }).catch((error) => {
@@ -66,8 +65,8 @@ export default class MainScreen extends React.Component {
         region: {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
+          latitudeDelta: this.state.region.latitudeDelta,
+          longitudeDelta: this.state.region.longitudeDelta,
         },
         lat: position.coords.latitude,
         lon: position.coords.longitude,
