@@ -9,7 +9,6 @@ class MembersController < ApplicationController
   include PlacesHelper
 
   def index
-    # render json: @members
     @members = Member.where mirror_id: params[:mirror_id]
   end
 
@@ -34,8 +33,14 @@ class MembersController < ApplicationController
   end
 
   def location
-    PlacesHelper.get_place_type(members_location_parameters[:lat], members_location_parameters[:lon])
-    if @member.update(members_location_parameters)
+    location_params = members_location_parameters
+    activity = PlacesHelper.get_place_type(
+      location_params[:lat],
+      location_params[:lon]
+    )
+    location_params[:activity] = activity
+
+    if @member.update(location_params)
       render json: @member
     else
       error_response @member
@@ -49,11 +54,10 @@ class MembersController < ApplicationController
   private
 
   def members_parameters
-    params.require(:member).permit()  # FIXME
+    params.require(:member).permit()  # FIXME: When needed
   end
 
   def members_location_parameters
-    # params.require(:member).permit(:activity)
     params.require(:member).permit(:lat, :lon)
   end
 
