@@ -6,6 +6,8 @@ class MembersController < ApplicationController
 
   load_and_authorize_resource
 
+  include PlacesHelper
+
   def index
     # render json: @members
     @members = Member.where mirror_id: params[:mirror_id]
@@ -14,7 +16,7 @@ class MembersController < ApplicationController
   def show
     render json: @member
   end
-  
+
   def create
     if @member.save
       render json: @member
@@ -32,6 +34,7 @@ class MembersController < ApplicationController
   end
 
   def location
+    PlacesHelper.get_place_type(members_location_parameters[:lat], members_location_parameters[:lon])
     if @member.update(members_location_parameters)
       render json: @member
     else
@@ -50,7 +53,8 @@ class MembersController < ApplicationController
   end
 
   def members_location_parameters
-    params.require(:member).permit(:activity)
+    # params.require(:member).permit(:activity)
+    params.require(:member).permit(:lat, :lon)
   end
 
   def current_ability

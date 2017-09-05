@@ -27,3 +27,6 @@ log
 node_modules
 db
 tmp
+
+# Secrets
+/config/secrets.yml
