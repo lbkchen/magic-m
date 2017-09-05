@@ -1,7 +1,7 @@
 module PlacesHelper
   API_KEY = Rails.application.secrets.google_places_key
 
-  SUPPORTED_TYPES = {
+  ACTIVITY_TYPES = {
     airport:              :adventure,
     amusement_park:       :partying,
     aquarium:             :adventure,
@@ -39,6 +39,7 @@ module PlacesHelper
     parking:              :adventure,
     pet_store:            :shopping,
     pharmacy:             :shopping,
+    point_of_interest:    :adventure,
     police:               :mortal_peril,
     post_office:          :work,
     restaurant:           :eating,
@@ -52,15 +53,22 @@ module PlacesHelper
     train_station:        :adventure,
     transit_station:      :adventure,
     university:           :school,
-    zoo:                  :adventure, 
+    zoo:                  :adventure,
   }
+
+  PLACE_TYPES = ACTIVITY_TYPES.keys
 
   def get_place_type(lat, lon)
     @client = GooglePlaces::Client.new(API_KEY)
-    spots = @client.spots(lat, lon)
+    spots = @client.spots(lat, lon, types: PLACE_TYPES, radius: 200)
+
+    activity_counts = Hash.new(0)
     spots.each do |spot|
-      puts spot.name
-      puts spot.types
+      spot.types.each { |type| activity_counts[ACTIVITY_TYPES[type.to_sym]] += 1 }
     end
+    activity_counts.delete_if { |k, v| k.nil? || v.nil? }
+
+    activity_counts.max_by { |k, v| v }[0]
   end
+
 end
