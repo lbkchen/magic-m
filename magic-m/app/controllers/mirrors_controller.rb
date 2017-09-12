@@ -29,7 +29,7 @@ class MirrorsController < ApplicationController
 
   def activities
     # Returns a summary of all activities of members
-    render json: activities_hash  # TODO: test
+    render json: activities_hash
   end
 
   private

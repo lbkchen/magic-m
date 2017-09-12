@@ -5,6 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import Button from '../common/Button';
 import Input from '../common/Input';
 import { marginTop } from '../styles/layout';
+import { NETWORK_IP } from '../../config/secrets';
 
 export default class LoginScreen extends React.Component {
 
@@ -34,7 +35,7 @@ export default class LoginScreen extends React.Component {
   }
 
   loginUser() {
-    const authRoute = 'http://192.168.0.139:3000/members/sign_in';
+    const authRoute = `http://${NETWORK_IP}:3000/members/sign_in`;
     fetch(authRoute, {
       method: 'POST',
       headers: {

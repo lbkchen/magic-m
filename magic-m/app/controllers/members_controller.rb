@@ -34,7 +34,7 @@ class MembersController < ApplicationController
 
   def location
     location_params = members_location_parameters
-    activity = PlacesHelper.get_place_type(
+    activity = get_place_type(
       location_params[:lat],
       location_params[:lon]
     )
